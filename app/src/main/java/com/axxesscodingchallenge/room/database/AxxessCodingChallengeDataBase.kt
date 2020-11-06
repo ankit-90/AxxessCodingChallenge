@@ -15,7 +15,7 @@ import com.axxesscodingchallenge.utils.Constants
 )
 abstract class AxxessCodingChallengeDataBase : RoomDatabase() {
 
-    abstract fun axxessDao(): AxxessCodingChallengeDataBase
+    //abstract fun axxessDao(): AxxessCodingChallengeDataBase
 
     companion object {
         private var INSTANCE: AxxessCodingChallengeDataBase? = null

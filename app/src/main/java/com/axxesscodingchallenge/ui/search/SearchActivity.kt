@@ -72,7 +72,7 @@ class SearchActivity : BaseActivity(),SearchAdapter.ItemClickListener {
         itemDecoration.setDividerColor(
             ContextCompat.getColor(
                 this@SearchActivity,
-                android.R.color.holo_red_dark
+                android.R.color.darker_gray
             )
         )
         rv_search.addItemDecoration(itemDecoration)

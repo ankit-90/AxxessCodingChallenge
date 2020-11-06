@@ -26,11 +26,7 @@ abstract class BaseActivity : AppCompatActivity() {
             .inflate(getLayout(), null, false)
         container.addView(view, 0)
 
-        if (hasToolbar()){
-            toolbar.visibility = View.VISIBLE
-        }else{
-            toolbar.visibility = View.GONE
-        }
+        handleToolbar()
     }
 
     /**
@@ -43,6 +39,20 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected open fun setToolBarTitle( title:String){
         toolbar.title = title
+    }
+
+    /**
+     * all the events of toolbar will be handled here
+     * */
+    private fun handleToolbar(){
+        if (hasToolbar()){
+            toolbar.visibility = View.VISIBLE
+        }else{
+            toolbar.visibility = View.GONE
+        }
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 
 

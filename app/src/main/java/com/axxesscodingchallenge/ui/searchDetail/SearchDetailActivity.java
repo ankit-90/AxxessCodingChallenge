@@ -1,16 +1,11 @@
 package com.axxesscodingchallenge.ui.searchDetail;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.axxesscodingchallenge.R;
 import com.axxesscodingchallenge.base.BaseActivity;
-import com.axxesscodingchallenge.base.BaseApp;
 import com.axxesscodingchallenge.data.model.Image;
-import com.axxesscodingchallenge.room.database.AxxessCodingChallengeDataBase;
-import com.axxesscodingchallenge.ui.search.SearchActivity;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.Nullable;
@@ -18,8 +13,10 @@ import org.jetbrains.annotations.Nullable;
 import static com.axxesscodingchallenge.ui.search.SearchActivity.EXTRA_IMAGE;
 
 /**
- *
- *
+ * @author Ankit Chandel
+ * @since 04/11/20
+ * <h1>SearchDetailActivity</h1>
+ * <p>Show image view with field to add comment</p>
  * */
 public class SearchDetailActivity extends BaseActivity {
 

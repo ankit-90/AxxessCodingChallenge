@@ -14,8 +14,8 @@ infix fun ImageView.loadUrl(url: String) {
     Picasso.get()
         .load(url)
         .placeholder(R.drawable.ic_baseline_search_24)
-        .centerCrop()
-        .fit()
+        /*.centerCrop()
+        .fit()*/
         .into(this)
 }
 fun <T> AppCompatActivity.createIntent(className: Class<T>, bundle: Bundle? = null) {
