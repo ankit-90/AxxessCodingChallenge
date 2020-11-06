@@ -7,12 +7,11 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Image( @SerializedName("id") var id: String,
                   @SerializedName("title") val title: String,
-                  @SerializedName("images") val imageSrc: ArrayList<ImageUrl> =
-                      ArrayList<ImageUrl>()
+                  @SerializedName("images") val imageSrc: ArrayList<ImageUrl>?
 
 ) : Parcelable {
     val imageSrc_:String
-        get() = imageSrc[0].image
+        get() = if(imageSrc == null) "NA" else imageSrc[0].image!!
 }
 @Parcelize
-data class ImageUrl(@SerializedName("link") val image:String) : Parcelable
+data class ImageUrl(@SerializedName("link") val image:String?) : Parcelable

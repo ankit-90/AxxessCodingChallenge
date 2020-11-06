@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,6 +15,7 @@ import com.axxesscodingchallenge.data.model.Image
 import com.axxesscodingchallenge.ui.searchDetail.SearchDetailActivity
 import com.axxesscodingchallenge.utils.MiddleDividerItemDecoration
 import com.axxesscodingchallenge.utils.createIntent
+import com.axxesscodingchallenge.utils.showToast
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_search.*
@@ -105,9 +107,14 @@ class SearchActivity : BaseActivity(),SearchAdapter.ItemClickListener {
      * @param image on click of item get image object
      * */
     override fun onItemCick(image: Image) {
-        val bundle = Bundle()
-        bundle.putParcelable(EXTRA_IMAGE,image)
-        createIntent(SearchDetailActivity::class.java,bundle)
+        if (image != null){
+            val bundle = Bundle()
+            bundle.putParcelable(EXTRA_IMAGE,image)
+            createIntent(SearchDetailActivity::class.java,bundle)
+        }else{
+            showToast("Empty Image Object")
+        }
+
     }
 
     companion object Constants{

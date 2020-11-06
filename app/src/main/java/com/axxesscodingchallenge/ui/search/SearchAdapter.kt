@@ -46,6 +46,7 @@ class SearchAdapter(private val images: ArrayList<Image>) : RecyclerView.Adapter
                 if(image.imageSrc?.size > 0){
                     itemView.img_search.loadUrl(image.imageSrc_)
                 }
+                itemView.setOnClickListener { itemClickListener?.onItemCick(image) }
             }
             itemView.setOnClickListener { itemClickListener?.onItemCick(image) }
         }
