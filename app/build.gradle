@@ -49,8 +49,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
-    //livedata
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
 
     // Koin AndroidX Scope features
     implementation "org.koin:koin-androidx-viewmodel:$rootProject.ext.koin_version"
@@ -70,4 +68,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
 
     implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.ext.rxBindingVersion"
+
+    // Room
+    implementation "androidx.room:room-ktx:$rootProject.ext.roomVersion"
+    kapt "androidx.room:room-compiler:$rootProject.ext.roomVersion"
 }

@@ -16,9 +16,10 @@ import timber.log.Timber
  * @author Ankit Chandel
  * @since 04/11/20
  * <h1>BaseApp</h1>
- * <p>Description of class</p>
+ * <p>Base Application of the app the the application level components must be inittialized here</p>
  * */
 class BaseApp: Application() {
+
     companion object {
         private lateinit var INSTANCE: BaseApp
         fun getContext(): BaseApp {
@@ -30,11 +31,8 @@ class BaseApp: Application() {
         super.onCreate()
         INSTANCE = this
         startKoin {
-            // Use Koin Android Logger
             androidLogger()
-            // declare Android context
             androidContext(this@BaseApp)
-            // declare modules to use
             modules(listOf(networkModule, viewModelModule, repositoryModule))
         }
 

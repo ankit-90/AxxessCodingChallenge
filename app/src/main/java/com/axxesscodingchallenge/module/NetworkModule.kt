@@ -32,12 +32,9 @@ val networkModule = module {
 
 /* Returns a custom OkHttpClient instance with interceptor. Used for building Retrofit service */
 fun createHttpClient(): OkHttpClient {
-    val cacheSize = 10 * 1024 * 1024 // 10 MB
-    //val cache = Cache(getCacheDir(), cacheSize.toLong())
     val client = OkHttpClient.Builder()
     client.readTimeout(5, TimeUnit.MINUTES)
         .writeTimeout(5, TimeUnit.MINUTES)
-        //.cache(cache)
         .addInterceptor(SecurityInterceptor())
     if (BuildConfig.DEBUG) {
         val httpLoggingInterceptor = HttpLoggingInterceptor { message -> Timber.d(message) }

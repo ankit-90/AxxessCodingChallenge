@@ -9,8 +9,14 @@ import com.axxesscodingchallenge.utils.NetworkHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
+/**
+ * @author Ankit Chandel
+ * @since 04/11/20
+ * <h1>SearchViewModel</h1>
+ * <p>Request data from repository and return it to activity <p>
+ * */
 class SearchViewModel(private val searchRepository: SearchRepository) : BaseViewModel() {
+
     var images = MutableLiveData<List<Image>>()
 
     fun getSearchResults(query: String) {

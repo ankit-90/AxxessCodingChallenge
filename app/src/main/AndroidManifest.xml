@@ -22,6 +22,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.search.SearchActivity"/>
+        <activity android:name=".ui.searchDetail.SearchDetailActivity"
+            android:screenOrientation="locked"/>
     </application>
 
 </manifest>

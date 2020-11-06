@@ -20,9 +20,10 @@ import kotlin.coroutines.CoroutineContext
  * @author Ankit Chandel
  * @since 04/11/20
  * <h1>BaseViewModel</h1>
- * <p>Description of class</p>
+ * <p>This class contains common operations for all the view models</p>
  * */
 open class BaseViewModel() : ViewModel(), CoroutineScope {
+
     private val job = Job()
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     var state = MutableLiveData<SearchResponse>()
@@ -52,7 +53,7 @@ open class BaseViewModel() : ViewModel(), CoroutineScope {
     fun <T : Any> apiSuccess(result: UseCaseResult<SearchResponse>) {
         when (result) {
             is UseCaseResult.Success -> {
-               /* if (result.data.status == 200) {
+                if (result.data.status == 200) {
                     Log.d("check","check")
                     state.value = result.data
                 } else if (result.data.status != null && result.data.status!! >= 400) {
@@ -63,7 +64,7 @@ open class BaseViewModel() : ViewModel(), CoroutineScope {
                         //for future use
                     }
 
-                }*/
+                }
             }
             is UseCaseResult.Exception -> errorMessage.value = result.exception.message
         }
@@ -76,20 +77,16 @@ open class BaseViewModel() : ViewModel(), CoroutineScope {
 
             is UseCaseResult.Success -> {
                 if (result.data.status == 200) {
-                    Log.d("status check","meet hui")
-                    Log.d("check==","${result.data.data}")
-
                     state.value = result.data.data
-                } /*else if (result.data.status != null && result.data.status!! >= 400) {
+                } else if (result.data.status != null && result.data.status!! >= 400) {
                     if (result.data.success != null) {
                         errorMessage.value = result.data.success.toString()
                     } else{
                         //errorArray.value = result.data.status?.errors
                         //for future use
-
                     }
 
-                }*/
+                }
             }
             is UseCaseResult.Exception -> errorMessage.value = result.exception.message
         }
