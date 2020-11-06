@@ -42,9 +42,9 @@ class SearchAdapter(private val images: ArrayList<Image>) : RecyclerView.Adapter
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindItem(image: Image) {
-            if(image != null){
+            if(image.imageSrc != null){
                 if(image.imageSrc?.size > 0){
-                    itemView.img_search.loadUrl(image.imageSrc[0].image)
+                    itemView.img_search.loadUrl(image.imageSrc_)
                 }
             }
             itemView.setOnClickListener { itemClickListener?.onItemCick(image) }
