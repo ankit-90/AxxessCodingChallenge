@@ -62,7 +62,7 @@ fun createHttpClient(): OkHttpClient {
 /* function to build our Retrofit service */
 fun createWebService(
     okHttpClient: OkHttpClient,
-     baseUrl: String
+    baseUrl: String
 ): AxxessCodingChallengeService {
     val retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)

@@ -1,10 +1,12 @@
 package com.axxesscodingchallenge.base
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.axxesscodingchallenge.data.model.GenericResponse
+import com.axxesscodingchallenge.data.model.SearchResponse
+import com.axxesscodingchallenge.data.model.Image
 import com.axxesscodingchallenge.utils.CommonUtils
 import com.axxesscodingchallenge.utils.UseCaseResult
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -23,14 +25,16 @@ import kotlin.coroutines.CoroutineContext
 open class BaseViewModel() : ViewModel(), CoroutineScope {
     private val job = Job()
     @RequiresApi(Build.VERSION_CODES.KITKAT)
-    var state = MutableLiveData<GenericResponse<*>>()
+    var state = MutableLiveData<SearchResponse>()
     val errorMessage = MutableLiveData<String>()
     val exceptionMessage = MutableLiveData<String>()
     var errorArray = MutableLiveData<List<Error>>()
     val retry = MutableLiveData<() -> Unit>()
     val showLoading = MutableLiveData<Boolean>()
+
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
+
     override fun onCleared() {
         super.onCleared()
         job.cancel()
@@ -45,34 +49,46 @@ open class BaseViewModel() : ViewModel(), CoroutineScope {
         }
         return isAvailable
     }
-    fun <T : Any> apiSuccess(result: UseCaseResult<GenericResponse<T>>) {
+    fun <T : Any> apiSuccess(result: UseCaseResult<SearchResponse>) {
         when (result) {
             is UseCaseResult.Success -> {
-                /*if (result.data.status?.code == 200) {
+               /* if (result.data.status == 200) {
+                    Log.d("check","check")
                     state.value = result.data
-                } else if (result.data.status?.code != null && result.data.status?.code!! >= 400) {
-                    if (result.data.status?.errors != null && result.data.status?.errors!!.isEmpty()) {
-                        errorMessage.value = result.data.status?.message
-                    } else
-                        errorArray.value = result.data.status?.errors
+                } else if (result.data.status != null && result.data.status!! >= 400) {
+                    if (result.data.success != null) {
+                        errorMessage.value = result.data.success.toString()
+                    } else{
+                        //errorArray.value = result.data.status?.errors
+                        //for future use
+                    }
+
                 }*/
             }
             is UseCaseResult.Exception -> errorMessage.value = result.exception.message
         }
     }
-    fun <T : Any> apiSuccess(
-        state: MutableLiveData<GenericResponse<T>>,
-        result: UseCaseResult<GenericResponse<T>>
+    fun  apiSuccess(
+        state: MutableLiveData<List<Image>>,
+        result: UseCaseResult<SearchResponse>
     ) {
         when (result) {
+
             is UseCaseResult.Success -> {
-               /* if (result.data.status?.code == 200) {
-                    state.value = result.data
-                } else if (result.data.status?.code != null && result.data.status?.code!! >= 400) {
-                    if (result.data.status?.errors != null && result.data.status?.errors!!.isEmpty()) {
-                        errorMessage.value = result.data.status?.message
-                    } else
-                        errorArray.value = result.data.status?.errors
+                if (result.data.status == 200) {
+                    Log.d("status check","meet hui")
+                    Log.d("check==","${result.data.data}")
+
+                    state.value = result.data.data
+                } /*else if (result.data.status != null && result.data.status!! >= 400) {
+                    if (result.data.success != null) {
+                        errorMessage.value = result.data.success.toString()
+                    } else{
+                        //errorArray.value = result.data.status?.errors
+                        //for future use
+
+                    }
+
                 }*/
             }
             is UseCaseResult.Exception -> errorMessage.value = result.exception.message

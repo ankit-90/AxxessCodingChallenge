@@ -7,11 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.axxesscodingchallenge.R
 import com.squareup.picasso.Picasso
 
 infix fun ImageView.loadUrl(url: String) {
     Picasso.get()
         .load(url)
+        .placeholder(R.drawable.ic_baseline_search_24)
+        .centerCrop()
+        .fit()
         .into(this)
 }
 fun <T> AppCompatActivity.createIntent(className: Class<T>, bundle: Bundle? = null) {

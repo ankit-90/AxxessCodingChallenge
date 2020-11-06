@@ -1,7 +1,8 @@
 package com.axxesscodingchallenge.api
 
 import com.axxesscodingchallenge.data.model.GenericResponse
-import com.axxesscodingchallenge.ui.search.User
+import com.axxesscodingchallenge.data.model.SearchResponse
+
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -12,5 +13,5 @@ interface AxxessCodingChallengeService{
     fun getSearchAsync(
         @Query("q")
         query: String
-    ): Deferred<GenericResponse<User>>
+    ): Deferred<SearchResponse>
 }
